@@ -19,7 +19,8 @@ app.use(express.json())
 const PORT = process.env.PORT || 3000;
 
 app.get('/', (req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname, '..', 'frontend', 'index.html'));
+  const frontendDir = process.env.NODE_ENV === 'production' ? 'frontend/dist' : 'frontend';
+  res.sendFile(path.join(__dirname, '..', frontendDir, 'index.html'));
 });
 
 app.get('/env', (req: Request, res: Response) => {
