@@ -13,6 +13,16 @@ dotenv.config();
 const app = express();
 app.use(express.json())
 
+// CORS：允许前端跨域请求
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  if (req.method === 'OPTIONS') return res.sendStatus(204);
+  next();
+});
+
+
 // 托管前端静态文件（和 API 同源，不需要 CORS）
 
 
