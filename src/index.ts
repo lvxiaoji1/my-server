@@ -5,6 +5,9 @@ import dotenv from 'dotenv';
 import { AppError, asyncHandler, errorHandler } from './middleware/error';
 import authRoutes from './routes/auth';
 import usersRouter from './routes/users';
+import postsRouter from './routes/posts';
+import productsRouter from './routes/products';
+import ordersRouter from './routes/orders';
 
 
 
@@ -42,6 +45,9 @@ app.get('/env', (req: Request, res: Response) => {
 
 app.use('/auth', authRoutes);
 app.use('/users', usersRouter);
+app.use('/posts', postsRouter);
+app.use('/products', productsRouter);
+app.use('/orders', ordersRouter);
 app.use(errorHandler);
 
 app.listen(PORT, () => {

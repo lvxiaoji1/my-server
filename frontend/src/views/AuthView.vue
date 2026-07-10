@@ -50,8 +50,9 @@
 <script setup lang="ts">
 import { ref, reactive, watch } from 'vue'
 import { login, register } from '../api/auth'
+import { useRouter } from 'vue-router'
 
-const emit = defineEmits(['auth-success'])
+const router = useRouter()
 
 const mode = ref<'login' | 'register'>('login')
 const loading = ref(false)
@@ -86,7 +87,7 @@ function handleSubmit() {
       result.value = res.data
       localStorage.setItem('token', res.data.token)
       localStorage.setItem('user', JSON.stringify(res.data.user))
-      emit('auth-success')
+      router.push('/users')
     })
     .catch((err) => {
       const data = err.response?.data
