@@ -40,8 +40,9 @@ app.get('/env', (req: Request, res: Response) => {
   });
 });
 
+app.use('/auth', authRoutes);
 app.use('/users', usersRouter);
-
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`?? 服务器运行在 http://localhost:${PORT}`);
